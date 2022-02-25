@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 1300px;height:900px;"></div>
+    <script type="text/javascript">
+          var myChart = echarts.init(document.getElementById('main'));
+
+          //Schema:
+          //Purpose, Leadership, Capability, Alignment
+          var dataClient = [[4.4,3.8,3,2.5]];
+          var dataBench = [[3.6,4.2,3.8,2.8]];
+          var lineStyle = {
+              normal: {
+                  width: 1,
+                  opacity: 0.5
+              }
+          };
+
+option = {
+    backgroundColor: 'white',
+    title: {
+        text: 'Relentless Performance Sub-Category Score',
+        left: 'center',
+        textStyle: {
+            color: '#303030',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+              trigger: 'item'
+          },
+    legend: {
+        bottom: 5,
+        data: ['Client Company', 'Sector Benchmark'],
+        itemGap: 0,
+        textStyle: {
+            color: '#505050',
+            fontSize: 16
+        },
+        selectedMode: 'false'
+    },
+
+    radar: {
+        indicator: [
+            {name: 'Invigorating Purpose', max: 5},
+            {name: 'Disruptive Leadership & Strategy', max: 5},
+            {name: 'Innovative Capability', max: 5},
+            {name: 'Dynamic Alignment & Accountability', max: 5},
+        ],
+
+        shape: 'circle',
+
+        splitNumber: 5,
+
+        name: {
+            textStyle: {
+                color: '#505050',
+                fontSize: 16
+            }
+        },
+
+        splitLine: {
+            lineStyle: {
+                color: '#dad8d6'
+            }
+        },
+        splitArea: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: 'rgba(238, 197, 102, 0.5)',
+                width: 1
+            },
+        },
+
+    },
+    series: [
+        {
+            name: 'Client Compnay',
+            type: 'radar',
+            lineStyle: lineStyle,
+            data: dataClient,
+            symbol: 'none',
+            itemStyle: {
+                normal: {
+                    color: '#00634f'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    opacity: 0.8,
+                    shadowOffsetX: 3,
+                    shadowOffsetY: 3,
+                    shadowBlur: 4
+                },
+            }
+        },
+
+        {
+          name: 'Sector Benchmark',
+          type: 'radar',
+          lineStyle: lineStyle,
+          data: dataBench,
+          symbol: 'none',
+          itemStyle: {
+            color: '#919191',
+            borderColor: 'red',
+            borderWidth: 10
+          },
+          areaStyle: {
+              normal: {
+                  opacity: 0.5
+              }
+          }
+      }
+        ]
+     };
+            myChart.setOption(option);
+      </script>
+
+</body>
+</html>
